@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAPATILLAS</title>
+    <!-- Agrega el enlace al archivo CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="imagenes/tienda.png">
+    
+</head>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+  
+    /* Estilos del menú de navegación */
+    .navbar {
+      background-color: #17a2b8;
+      transition: background-color 0.3s;
+      /* Transición de fondo al hacer clic */
+    }
+  
+    .navbar ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+  
+    .navbar li {
+      margin-right: 10px;
+    }
+  
+    .navbar li a {
+      display: block;
+      padding: 10px 15px;
+      color: white;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      /* Transición de fondo al hacer clic */
+    }
+  
+    .navbar li a:hover {
+      background-color: #138496;
+    }
+  
+    .navbar li.active a {
+      background-color: black;
+    }
+  
+    /* Estilos para los subapartados */
+    .submenu {
+      display: none;
+      background-color: #000;
+      /* Color de fondo negro para los subapartados */
+      padding: 10px;
+    }
+  
+    .submenu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  
+    .submenu ul li a {
+      text-decoration: none;
+      color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+  
+    .submenu ul li a:hover {
+      background-color: #fff;
+      /* Color de fondo blanco en hover */
+      color: #000;
+    }
+    
+  </style>
+<body style="background-image: url(imagenes/Perfectionism_\ The\ Bane\ of\ the\ Designer.gif );">
+    <header>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="container">
+                <!-- Primera fila -->
+                <div class="row align-items-center">
+                    <div class="col">
+                        <a href="tienda.html"><img src="imagenes/Capletraura-removebg-preview.png" alt="logo"
+                                style="width: 100px;"></a>
+                    </div>
+                    <div class="col text-center">
+                        <form class="form-inline" action="/trabajadores/buscar" method="POST">
+                            <div class="input-group " style="width: 1100px; position: relative;right: 50px;">
+                                <input class="form-control" type="text" name="busqueda" placeholder="Buscar">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col text-right" style="position: relative;left: 100px;">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="iniciar.html">Iniciar sesión</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="registro.html">Registrarse</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Segunda fila -->
+        <div id="header">
+            <nav class="navbar">
+                <ul>
+                    <li class="active"><a href="tienda.html">Inicio</a></li>
+                    <li><a href="#" onclick="mostrarSubmenu('hombres')">Hombres</a></li>
+                    <li><a href="#" onclick="mostrarSubmenu('mujeres')">Mujeres</a></li>
+                    <li><a href="#" onclick="mostrarSubmenu('novedades')">Novedades</a></li>
+                </ul>
+            </nav>
+            <div id="submenu-hombres" class="submenu">
+                <ul>
+                    <li><a href="polos.html">Polos</a></li>
+                    <li><a href="camisa.html">Camisas</a></li>
+                    <li><a href="jeans.html">Jeans</a></li>
+                    <li><a href="casacas.html">Casacas Jacket</a></li>
+                    <li><a href="zapatillas.html">Zapatillas</a>
+                </ul>
+            </div>
+
+            <div id="submenu-mujeres" class="submenu">
+                <ul>
+                    <li><a href="blusas.html">Blusas</a></li>
+                    <li><a href="">Pantalones</a></li>
+                    <li><a href="">Jeans</a></li>
+                    <li><a href="">Vestidos</a></li>
+                    <li><a href="">Zapatillas</a></li>
+                </ul>
+            </div>
+
+            <div id="submenu-novedades" class="submenu">
+                <ul>
+                    <li><a href="#">Nueva Colección</a></li>
+                    <li><a href="#">Ofertas Especiales</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <script>
+            function mostrarSubmenu(submenuId) {
+                // Ocultar todos los submenús
+                const submenus = document.getElementsByClassName('submenu');
+                for (let i = 0; i < submenus.length; i++) {
+                    submenus[i].style.display = 'none';
+                }
+
+                // Mostrar el submenú correspondiente al submenuId
+                const submenu = document.getElementById('submenu-' + submenuId);
+                submenu.style.display = 'block';
+            }
+        </script>
+
+    </header>
+    <main class="container">
+        <!-- <div class="jumbotron mt-4 bg-dark text-white">
+            <h1 class="display-4">¡Bienvenido a nuestra tienda de ropa!</h1>
+            <p class="lead">Descubre las últimas tendencias y encuentra el estilo perfecto para ti.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Ver productos</a>
+        </div> -->
+        <br>
+
+        <div class="Fuente-1 text-center">
+            <button class="btn btn-dark text-white" style="height: 50px; width: 100%;">MODELOS DE ZAPATILLAS</button>
+        </div>
+
+        <br>
+
+        <section class="row">
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/7932f65edca5504793acc875266855f8.jpg" class="card-img-top" alt="Producto 1" style="height: 380px"
+                        id="myfoto" onclick="zoomIn()">
+                    <div class="card-body">
+                        <h5 class="card-title">BOTAS FORUM</h5>
+                        <p class="card-text">S/120.00</p>
+                        <a href="detalle_producto.html?producto=46" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/601ebdc80aea0b0e808dc9bfccd5a598.jpg" class="card-img-top" alt="Producto 2" style="height: 380px"
+                        id="myfoto" onclick="zoomIn()">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">adidas Originals Adi-2000</h5>
+                        <p class="card-text">S/150.00</p>
+                        <a href="detalle_producto.html?producto=47" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/9864cc6b0b31b8a8817e732b7288c35e.jpg" class="card-img-top" alt="Producto 3" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title">ADI2000</h5>
+                        <p class="card-text">S/180.00</p>
+                        <a href="detalle_producto.html?producto=48" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/43e026c24f66e82b9266f366f05ac9e6.jpg" class="card-img-top" alt="Producto 1" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title">Nike Air Force 1</h5>
+                        <p class="card-text">S/170.00</p>
+                        <a href="detalle_producto.html?producto=49" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/e9b1002ea6466071c6de2683581bf7da.jpg" class="card-img-top" alt="Producto 2" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">NIKE AIR FORCE ONE</h5>
+                        <p class="card-text">S/200.00</p>
+                        <a href="detalle_producto.html?producto=50" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/d98b9c558242f4cda5712256801bdc81.jpg" class="card-img-top" alt="Producto 3" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title">NIKE DO7085 </h5>
+                        <p class="card-text">S/220.00</p>
+                        <a href="detalle_producto.html?producto=51" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/b9b36188eeb5052d551ada761a8268d0.jpg" class="card-img-top" alt="Producto 1" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title">Puma Slipstream</h5>
+                        <p class="card-text">S/180.00</p>
+                        <a href="detalle_producto.html?producto=52" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/d2eb9a3ca77201f4420ad362dc769aa0.jpg" class="card-img-top" alt="Producto 2" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Puma Hawaii</h5>
+                        <p class="card-text">S/240.00</p>
+                        <a href="detalle_producto.html?producto=53" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/d64009fe4e074949e5f58b173c8d0aea.jpg" class="card-img-top" alt="Producto 3" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title">Puma CA PRO</h5>
+                        <p class="card-text">S/210.00</p>
+                        <a href="detalle_producto.html?producto=54" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-light text-center py-3 mt-4">
+        <p>Tienda de Ropa &copy; 2023. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        $(document).ready(function () {
+            // Agrega la clase 'zoom' a las imágenes al hacer clic en ellas
+            $('.card-img-top').click(function () {
+                $(this).toggleClass('zoom');
+            });
+        });
+    </script>
+</body>
+</html>

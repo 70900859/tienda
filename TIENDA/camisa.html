@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camisas</title>
+    <!-- Agrega el enlace al archivo CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="imagenes/tienda.png">
+</head>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+  
+    /* Estilos del menú de navegación */
+    .navbar {
+      background-color: #17a2b8;
+      transition: background-color 0.3s;
+      /* Transición de fondo al hacer clic */
+    }
+  
+    .navbar ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+  
+    .navbar li {
+      margin-right: 10px;
+    }
+  
+    .navbar li a {
+      display: block;
+      padding: 10px 15px;
+      color: white;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      /* Transición de fondo al hacer clic */
+    }
+  
+    .navbar li a:hover {
+      background-color: #138496;
+    }
+  
+    .navbar li.active a {
+      background-color: black;
+    }
+  
+    /* Estilos para los subapartados */
+    .submenu {
+      display: none;
+      background-color: #000;
+      /* Color de fondo negro para los subapartados */
+      padding: 10px;
+    }
+  
+    .submenu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  
+    .submenu ul li a {
+      text-decoration: none;
+      color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+  
+    .submenu ul li a:hover {
+      background-color: #fff;
+      /* Color de fondo blanco en hover */
+      color: #000;
+    }
+    
+  </style>
+<body style="background-image: url(imagenes/Perfectionism_\ The\ Bane\ of\ the\ Designer.gif );">
+    <header>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="container">
+                <!-- Primera fila -->
+                <div class="row align-items-center">
+                    <div class="col">
+                        <a href="tienda.html"><img src="imagenes/Capletraura-removebg-preview.png" alt="logo"
+                                style="width: 100px;"></a>
+                    </div>
+                    <div class="col text-center">
+                        <form class="form-inline" action="/trabajadores/buscar" method="POST">
+                            <div class="input-group " style="width: 1100px; position: relative;right: 50px;">
+                                <input class="form-control" type="text" name="busqueda" placeholder="Buscar">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col text-right" style="position: relative;left: 100px;">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="iniciar.html">Iniciar sesión</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="registro.html">Registrarse</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Segunda fila -->
+        <div id="header">
+            <nav class="navbar">
+                <ul>
+                    <li class="active"><a href="tienda.html">Inicio</a></li>
+                    <li><a href="#" onclick="mostrarSubmenu('hombres')">Hombres</a></li>
+                    <li><a href="#" onclick="mostrarSubmenu('mujeres')">Mujeres</a></li>
+                    <li><a href="#" onclick="mostrarSubmenu('novedades')">Novedades</a></li>
+                </ul>
+            </nav>
+            <div id="submenu-hombres" class="submenu">
+                <ul>
+                    <li><a href="polos.html">Polos</a></li>
+                    <li><a href="camisa.html">Camisas</a></li>
+                    <li><a href="jeans.html">Jeans</a></li>
+                    <li><a href="casacas.html">Casacas Jacket</a></li>
+                    <li><a href="zapatillas.html">Zapatillas</a>
+                </ul>
+            </div>
+
+            <div id="submenu-mujeres" class="submenu">
+                <ul>
+                    <li><a href="blusas.html">Blusas</a></li>
+                    <li><a href="">Pantalones</a></li>
+                    <li><a href="">Jeans</a></li>
+                    <li><a href="">Vestidos</a></li>
+                    <li><a href="">Zapatillas</a></li>
+                </ul>
+            </div>
+
+            <div id="submenu-novedades" class="submenu">
+                <ul>
+                    <li><a href="#">Nueva Colección</a></li>
+                    <li><a href="#">Ofertas Especiales</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <script>
+            function mostrarSubmenu(submenuId) {
+                // Ocultar todos los submenús
+                const submenus = document.getElementsByClassName('submenu');
+                for (let i = 0; i < submenus.length; i++) {
+                    submenus[i].style.display = 'none';
+                }
+
+                // Mostrar el submenú correspondiente al submenuId
+                const submenu = document.getElementById('submenu-' + submenuId);
+                submenu.style.display = 'block';
+            }
+        </script>
+
+    </header>
+    <main class="container">
+        <!-- <div class="jumbotron mt-4 bg-dark text-white">
+            <h1 class="display-4">¡Bienvenido a nuestra tienda de ropa!</h1>
+            <p class="lead">Descubre las últimas tendencias y encuentra el estilo perfecto para ti.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Ver productos</a>
+        </div> -->
+        <br>
+
+        <div class="Fuente-1 text-center">
+            <button class="btn btn-dark text-white" style="height: 50px; width: 100%;">CAMISAS</button>
+        </div>
+
+        <br>
+
+        <section class="row">
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/Hombres 1 pieza Camisa con estampado de cuadros con bolsillos con solapa.jpg" class="card-img-top" alt="Producto 1" style="height: 380px"
+                        id="myfoto" onclick="zoomIn()">
+                    <div class="card-body">
+                        <h5 class="card-title">Camisa con estampado</h5>
+                        <p class="card-text">S/65.00</p>
+                        <a href="detalle_producto.html?producto=10" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/167055834964626e2ebd659e545e397c42ba31d043.webp"class="card-img-top" alt="Producto 2" style="height: 380px"
+                        id="myfoto" onclick="zoomIn()">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Camisa Roja a cuadros</h5>
+                        <p class="card-text">S/60.00</p>
+                        <a href="detalle_producto.html?producto=11" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/Boys Plaid Patched Pocket Shirt Without Tee.jpg" class="card-img-top" alt="Producto 3" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title">Camisa Amarilla a cuadros</h5>
+                        <p class="card-text">S/62.00</p>
+                        <a href="detalle_producto.html?producto=12" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/Hombres Camisa con bolsillo con solapa.jpg" class="card-img-top" alt="Producto 1" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title">Camisa con bolsillo y solapa</h5>
+                        <p class="card-text">S/72.00</p>
+                        <a href="detalle_producto.html?producto=13" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/Camisa con botón delantero de rayas con estampado de árbol de coco.jpg" class="card-img-top" alt="Producto 2" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Camisa de rayas</h5>
+                        <p class="card-text">S/65.00</p>
+                        <a href="detalle_producto.html?producto=14" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/Hombres Camisa con estampado geométrico sin camiseta.jpg" class="card-img-top" alt="Producto 3" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title">Camisa con estilo geométrico</h5>
+                        <p class="card-text">S/65.00</p>
+                        <a href="detalle_producto.html?producto=15" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/Designer Mens Colorful Camisas hawaianas de manga corta de vacaciones con solapa de bloque de color mixto.png" class="card-img-top" alt="Producto 1" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title">Camisa hawaiana de colores</h5>
+                        <p class="card-text">S/55.00</p>
+                        <a href="detalle_producto.html?producto=16" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/2e9751caa21b49d8b866fe2c85ae4520.jpg" class="card-img-top" alt="Producto 2" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Morgan wallen</h5>
+                        <p class="card-text">S/80.00</p>
+                        <a href="detalle_producto.html?producto=17" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 text-center" id="foto">
+                <div class="card mb-4">
+                    <img src="./imagenes/Men 100% Cotton Porcelain Stripe Mixed Print Short Sleeve Casual Holiday Shirts.jpg" class="card-img-top" alt="Producto 3" style="height: 380px">
+                    <div class="card-body">
+                        <h5 class="card-title">Camisa Mixed</h5>
+                        <p class="card-text">S/55.00</p>
+                        <a href="detalle_producto.html?producto=18" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-light text-center py-3 mt-4">
+        <p>Tienda de Ropa &copy; 2023. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        $(document).ready(function () {
+            // Agrega la clase 'zoom' a las imágenes al hacer clic en ellas
+            $('.card-img-top').click(function () {
+                $(this).toggleClass('zoom');
+            });
+        });
+    </script>
+</body>
+
+</html>

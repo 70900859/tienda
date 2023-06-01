@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles del Producto</title>
+  <!-- Agrega los estilos CSS que desees -->
+  <!-- Agrega el enlace al archivo CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="icon" href="imagenes/tienda.png">
+
+  <style>
+    body {
+      background-image: url(imagenes/Perfectionism_\ The\ Bane\ of\ the\ Designer.gif);
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .producto-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 5rem;
+    }
+
+    .producto-container .imagen-producto {
+      width: 300px;
+      border: 2px solid black;
+    }
+
+    .producto-container .detalle-producto {
+      margin-left: 3rem;
+    }
+
+    .producto-container h1 {
+      text-align: center;
+    }
+    /* Estilos del menú de navegación */
+  .navbar {
+    background-color: #17a2b8;
+    transition: background-color 0.3s; /* Transición de fondo al hacer clic */
+  }
+
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  .navbar li {
+    margin-right: 10px;
+  }
+
+  .navbar li a {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s; /* Transición de fondo al hacer clic */
+  }
+
+  .navbar li a:hover {
+    background-color: #138496;
+  }
+
+  .navbar li.active a {
+    background-color: black;
+  }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <div class="container">
+        <!-- Primera fila -->
+        <div class="row align-items-center">
+          <div class="col">
+            <img src="imagenes/Capletraura-removebg-preview.png" alt="logo" style="width: 100px;">
+          </div>
+          <div class="col text-center">
+            <form class="form-inline" action="/trabajadores/buscar" method="POST">
+              <div class="input-group " style="width: 1100px; position: relative;right: 50px;">
+                <input class="form-control" type="text" name="busqueda" placeholder="Buscar">
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i class="fas fa-search"></i>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col text-right" style="position: relative;left: 100px;">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="iniciar.html">Iniciar sesión</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="registro.html">Registrarse</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Segunda fila -->
+    <nav class="navbar">
+      <ul>
+        <li class="active"><a href="tienda.html">Inicio</a></li>
+        <li><a href="#" onclick="mostrarSubmenu('hombres')">Hombres</a></li>
+        <li><a href="#" onclick="mostrarSubmenu('mujeres')">Mujeres</a></li>
+        <li><a href="#" onclick="mostrarSubmenu('novedades')">Novedades</a></li>
+      </ul>
+    </nav>
+  </header>
+  <br>
+  <div class="bg-light"
+    style="width: 1000px;height: 1100px;position: relative;height: 600px;left: 180px;border-radius: 25px;"> 
+    <h1 class="text-center">Detalles del Producto</h1>
+    <div class="producto-container">
+      <img class="imagen-producto" src="" alt="Imagen del producto" style="width: 600px;height:500px;position: relative;right: 0px;bottom: 130px;">
+      <div class="detalle-producto" style="position: relative;bottom: 220px;"><br><br><br><br><br><br><br>
+        <h2 class="nombre-producto"></h2>
+        <p class="descripcion-producto"></p>
+        <h3 class="precio-producto text-center"></h3><br>
+        <button type="button" class="btn btn-primary btn-block">AÑADIR AL CARRITO</button>
+        <button type="button" class="btn btn-primary btn-block"data-toggle="modal"
+        data-target="#modalCompra" >COMPRAR</button>
+        <!-- MODAL COMPRA -->
+<div class="modal" id="modalCompra">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Realizar Compra</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="formCompra">
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="direccion">Dirección:</label>
+            <input type="text" class="form-control" id="direccion" required>
+          </div>
+          <div class="form-group">
+            <label for="tarjeta">Número de Tarjeta:</label>
+            <input type="text" class="form-control" id="tarjeta" required>
+          </div>
+          <div class="form-group">
+            <label for="fecha">Fecha de Vencimiento:</label>
+            <input type="text" class="form-control" id="fecha" required>
+          </div>
+          <div class="form-group">
+            <label for="cvv">CVV:</label>
+            <input type="text" class="form-control" id="cvv" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="realizarCompra()">Realizar Compra</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function realizarCompra() {
+  // Aquí puedes agregar la lógica para procesar la compra y realizar las acciones necesarias
+  
+  // Mostrar mensaje de compra realizada
+  const mensaje = document.createElement("p");
+  mensaje.textContent = "¡Compra realizada!";
+  mensaje.classList.add("text-success");
+  
+  const modalBody = document.querySelector("#modalCompra .modal-body");
+  modalBody.appendChild(mensaje);
+  
+  // Desactivar botón de realizar compra
+  const btnRealizarCompra = document.querySelector("#modalCompra .modal-footer button");
+  btnRealizarCompra.disabled = true;
+}
+
+</script>
+
+        <img src="imagenes/Metodos-de-pago-incredible-peru-travel.png" alt="" style="width: 420px;position: relative;top: 0px;left:  0px;right: 5px;">
+      </div>
+    </div>
+    
+  </div>
+
+  <script>
+    // Obtener el identificador del producto desde la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productoId = urlParams.get('producto');
+
+    // Aquí puedes utilizar el identificador del producto para cargar los detalles correspondientes desde una base de datos o un objeto de datos en JavaScript
+    // En este ejemplo, utilizaremos un objeto de datos para simplificar
+
+    const productos = [
+      {
+        id: 1,
+        nombre: 'Jeans modelo recto',
+        imagen: './imagenes/Jean1.jpg',
+        descripcion: 'Un clásico atemporal, estos jeans modelo recto ofrecen un ajuste cómodo y versátil. Con su corte  brindan una apariencia elegante y equilibrada. Perfectos para cualquier ocasión, estos jeans son una opción confiable y estilizada para tu guardarropa.',
+        precio: 'S/85.00'
+      },
+      {
+        id: 2,
+        nombre: 'Camisa Flame',
+        descripcion: 'La camisa Flame es audaz y llamativa, con un estampado vibrante que evoca pasión y energía. Fabricada con materiales de alta calidad y corte moderno, combina estilo y comodidad para hacer una declaración de moda única y audaz.',
+        imagen: './imagenes/camisaflama.jpg',
+        precio: 'S/90.00'
+      },
+      {
+        id: 3,
+        nombre: 'Jacket Blackair',
+        descripcion: 'La chaqueta Blackair es un clásico atemporal con elegante color negro y diseño aerodinámico. Combina estilo y funcionalidad. Fabricada con materiales de alta calidad, brinda confort y durabilidad. Perfecta para ocasiones casuales o salidas nocturnas, te mantendrá abrigado y con estilo.',
+        imagen: './imagenes/jacket.jpg',
+        precio: 'S/120.00'
+      },
+      {
+        id: 4,
+        nombre: 'Vestido Completo',
+        imagen: './imagenes/vestido.jpg',
+        descripcion: 'El vestido completo es sofisticado y elegante, ideal para eventos especiales. Con un diseño que realza la figura y detalles cuidadosamente diseñados, brinda un aspecto impecable. Fabricado con telas de alta calidad, es la elección perfecta para ocasiones glamorosas.',
+        precio: 'S/75.00'
+      },
+      {
+        id: 5,
+        nombre: 'Pantalon Cargo',
+        imagen: './imagenes/jeancargo.jpg',
+        descripcion: 'El pantalón cargo es versátil y funcional, ofreciendo comodidad y estilo. Con múltiples bolsillos de gran tamaño, brinda amplio espacio de almacenamiento. Su corte holgado y tejido resistente lo hacen duradero. Combina practicidad y moda en un solo estilo.',
+        precio: 'S/85.00'
+      },
+      {
+        id: 6,
+        nombre: 'Blusa Celeste',
+        imagen: './imagenes/top.jpg',
+        descripcion: 'La blusa celeste es encantadora y femenina, con detalles sutiles que realzan su belleza. Su corte favorecedor y tejido ligero la hacen ideal para ocasiones formales o looks casuales, añadiendo delicadeza y estilo.',
+        precio: 'S/45.00'
+      },
+      {
+        id: 7,
+        nombre: 'Zapatillas Converse',
+        imagen: './imagenes/converse.jpg',
+        descripcion: ' Las zapatillas Converse son un ícono del estilo casual y urbano, reconocidas por su diseño de lona y suela de caucho. Son cómodas, duraderas y expresan individualidad en cualquier ocasión.',
+        precio: 'S/150.00'
+      },
+      {
+        id: 8,
+        nombre: 'DC Black',
+        imagen: './imagenes/dc.jpg',
+        descripcion: 'Las zapatillas DC Black son parte de la línea urbana de DC Shoes. Destacan por su estilo elegante y versátil en negro. Fabricadas con materiales de calidad, como cuero resistente, brindan durabilidad y comodidad. Perfectas para uso diario o actividades casuales, ofrecen un look deportivo y moderno.',
+        precio: 'S/240.00'
+      },
+      {
+        id: 9,
+        nombre: 'NEW BALANCE 550',
+        imagen: './imagenes/550.jpg',
+        descripcion: 'Las zapatillas New Balance 550 combinan estilo retro y comodidad moderna. Inspiradas en el baloncesto de los 80, tienen una estética vintage y construcción duradera. Una opción elegante y versátil con un toque retro.',
+        precio: 'S/350.00'
+      },
+      {
+        id: 10,
+        nombre: 'Camisa con estampado ',
+        imagen: './imagenes/Hombres 1 pieza Camisa con estampado de cuadros con bolsillos con solapa.jpg',
+        descripcion: 'Una elegante camisa con estampado vibrante, fabricada con materiales de alta calidad y diseño moderno, ideal para añadir estilo y personalidad a tu guardarropa.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 11,
+        nombre: 'Camisa Roja a cuadros',
+        imagen: './imagenes/167055834964626e2ebd659e545e397c42ba31d043.webp',
+        descripcion: 'Una llamativa camisa roja a cuadros, confeccionada con suave tela de algodón, perfecta para lucir un look moderno y audaz con un toque de estilo clásico.',
+        precio: 'S/60.00'
+      },
+      {
+        id: 12,
+        nombre: 'Camisa Amarilla a cuadros',
+        imagen: './imagenes/Boys Plaid Patched Pocket Shirt Without Tee.jpg',
+        descripcion: 'Una atrevida camisa amarilla a cuadros, confeccionada en suave algodón, que te permitirá destacar con estilo y añadir un toque de alegría y frescura a tu outfit.',
+        precio: 'S/62.00'
+      },
+      {
+        id: 13,
+        nombre: 'Camisa con bolsillo y solapa',
+        imagen: './imagenes/Hombres Camisa con bolsillo con solapa.jpg',
+        descripcion: 'Una versátil camisa con bolsillo y solapa, confeccionada en tela de alta calidad, que combina funcionalidad y estilo para agregar un toque moderno y práctico a tu vestimenta.',
+        precio: 'S/72.00'
+      },
+      {
+        id: 14,
+        nombre: 'Camisa de rayas',
+        imagen: './imagenes/Camisa con botón delantero de rayas con estampado de árbol de coco.jpg',
+        descripcion: 'Una elegante camisa de rayas, confeccionada en tela suave y resistente, que combina líneas clásicas y atemporales con un toque de sofisticación para un look impecable.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 15,
+        nombre: 'Camisa con estilo geométrico',
+        imagen: './imagenes/Hombres Camisa con estampado geométrico sin camiseta.jpg',
+        descripcion: 'Una moderna camisa con estilo geométrico, diseñada con patrones y formas únicas, que le darán a tu atuendo un toque vanguardista y lleno de personalidad.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 16,
+        nombre: 'Camisa hawaiana de colores',
+        imagen: './imagenes/Designer Mens Colorful Camisas hawaianas de manga corta de vacaciones con solapa de bloque de color mixto.png',
+        descripcion: 'Una divertida camisa hawaiana de colores vibrantes, con estampados tropicales y flores exóticas, ideal para añadir alegría y estilo a tus ocasiones relajadas y festivas.',
+        precio: 'S/55.00'
+      },
+      {
+        id: 17,
+        nombre: 'Morgan wallen',
+        imagen: './imagenes/2e9751caa21b49d8b866fe2c85ae4520.jpg',
+        descripcion: 'Una camisa exclusiva Morgan Wallen, con diseños únicos y estilo auténtico, perfecta para lucir un look country moderno y sofisticado.',
+        precio: 'S/80.00'
+      },
+      {
+        id: 18,
+        nombre: 'Camisa Mixed',
+        imagen: './imagenes/Men 100% Cotton Porcelain Stripe Mixed Print Short Sleeve Casual Holiday Shirts.jpg',
+        descripcion: 'Una camisa "Mixed" de Morgan Wallen, con combinación de colores y estampados audaces, que refleja su estilo único y vibrante en la moda.',
+        precio: 'S/55.00'
+      },
+      {
+        id: 19,
+        nombre: 'Polo Adidas Condivo 22',
+        imagen: './imagenes/polo2.jpg',
+        descripcion: 'Un polo Adidas Condivo 22, confeccionado con materiales de alta calidad y tecnología transpirable, ideal para rendimiento deportivo y estilo atlético sofisticado.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 20,
+        nombre: 'Polo Adidas Diseño Desvanecido',
+        imagen: './imagenes/polo3.jpg',
+        descripcion: 'Un elegante polo Adidas con diseño desvanecido, que combina colores suaves y sutiles transiciones para un aspecto moderno y sofisticado tanto en el deporte como en el estilo casual.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 21,
+        nombre: 'Polo Adidas Diseño Militar',
+        imagen: './imagenes/polo6.jpg',
+        descripcion: 'Un distintivo polo Adidas con diseño militar, inspirado en los patrones y colores camuflados, que combina estilo urbano con una estética audaz y aventurera para un look moderno y atrevido.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 22,
+        nombre: 'Polo Adidas Diseño Rasgado',
+        imagen: './imagenes/polo5.jpg',
+        descripcion: 'Un vanguardista polo Adidas con diseño rasgado, que presenta cortes estratégicos y detalles desgastados, para un estilo urbano y rebelde que destaca en cualquier ocasión con un toque de rebeldía.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 23,
+        nombre: 'Polo Adidas con Estampado',
+        imagen: './imagenes/polo7.jpg',
+        descripcion: 'Un sofisticado polo Adidas con estampado llamativo, que fusiona colores y patrones dinámicos para agregar un toque de originalidad y estilo a tu vestimenta deportiva o casual.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 24,
+        nombre: 'Polo Adidas Diseño Militar',
+        imagen: './imagenes/polo8.jpg',
+        descripcion: 'Un polo Adidas con un audaz diseño militar, inspirado en los colores y patrones camuflados, que combina estilo y funcionalidad para un aspecto atlético y urbano con un toque de aventura.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 25,
+        nombre: 'Polo Adidas Boogie T Shirts',
+        imagen: './imagenes/polo9.jpg',
+        descripcion: 'Un exclusivo polo Adidas Boogie T Shirts, con estilo moderno y audaz, perfecto para destacar en cualquier ocasión con su diseño único y calidad premium.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 26,
+        nombre: 'Polo Adidas Boogie T Shirts',
+        imagen: './imagenes/polo10.jpg',
+        descripcion: 'Un polo Adidas Boogie T Shirts, con colores vibrantes y estampados audaces, que refleja un estilo urbano y vanguardista con un toque de originalidad y frescura.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 27,
+        nombre: 'Polo Adidas Color Rojo Basico',
+        imagen: './imagenes/polo11.jpg',
+        descripcion: 'Un clásico polo Adidas de color rojo, con un diseño básico y atemporal, ideal para lucir un estilo deportivo y elegante en cualquier ocasión.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 28,
+        nombre: 'Jean con bolsillo oblicuo',
+        imagen: './imagenes/2595f49c4e8be9d4f09e2d2927892b0c.jpg',
+        descripcion: 'Un par de jeans con un estilo moderno y vanguardista, destacando por sus bolsillos oblicuos que añaden un toque de originalidad y estilo a tu look diario.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 29,
+        nombre: 'Straight Jeans',
+        imagen: './imagenes/40538dfc3de19444d64dcddac1d6aafc.jpg',
+        descripcion: 'Los clásicos straight jeans son sinónimo de estilo y comodidad, con su corte recto que se adapta a cualquier ocasión, garantizando un look moderno y versátil.',
+        precio: 'S/60.00'
+      },
+      {
+        id: 30,
+        nombre: 'Jean adidas D9005',
+        imagen: './imagenes/6d6309d99be3006b9c0de352945ef438.jpg',
+        descripcion: 'Los jeans Adidas D9005 son una elección perfecta para lucir un estilo moderno y atlético, con su ajuste cómodo y detalles distintivos que reflejan la calidad y el estilo de la marca.',
+        precio: 'S/62.00'
+      },
+      {
+        id: 31,
+        nombre: 'Jeand Adidas Originals',
+        imagen: './imagenes/11075229_999819580029089_5485396603605988117_o.jpg',
+        descripcion: 'Los jeans Adidas Originals son una fusión de estilo urbano y calidad premium, diseñados para brindar comodidad y un aspecto moderno con el distintivo logo de Adidas.',
+        precio: 'S/72.00'
+      },
+      {
+        id: 32,
+        nombre: 'Jean deportivo',
+        imagen: './imagenes/dc02ba4bce8b49fcbdedadfd0139f0af_9366.webp',
+        descripcion: 'Los jeans deportivos combinan estilo y funcionalidad, confeccionados con telas elásticas y transpirables para brindar comodidad durante actividades físicas y un look deportivo y moderno.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 33,
+        nombre: 'Blue Jean',
+        imagen: './imagenes/1366_2000.jpg',
+        descripcion: 'El clásico blue jean, una prenda atemporal que nunca pasa de moda, con su tono azul versátil y diseño resistente que se adapta a cualquier ocasión con estilo y comodidad.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 34,
+        nombre: 'Jean adidas slim',
+        imagen: './imagenes/003610000845491-27ae6e918cd83342c616252393069766-640-0.jpg',
+        descripcion: 'Los jeans Adidas Slim ofrecen un corte ajustado y elegante, resaltando tus piernas y brindando un aspecto moderno y atlético con el sello distintivo de Adidas.',
+        precio: 'S/55.00'
+      },
+      {
+        id: 35,
+        nombre: 'JEAN SLIM HOMBRE P111',
+        imagen: './imagenes/gsc_116305252_1438821_1.jpg',
+        descripcion: 'El jean Slim P111 para hombre ofrece un corte ajustado y estilizado, realzando la figura masculina con su diseño moderno y versátil, perfecto para lucir un look sofisticado y contemporáneo.',
+        precio: 'S/80.00'
+      },
+      {
+        id: 36,
+        nombre: 'Jean Adidas diesel',
+        imagen: './imagenes/JEANS-ADIDAS-A1-PITILLO-20170309023119.jpg',
+        descripcion: 'Los jeans Adidas Diesel son una combinación perfecta de estilo y comodidad, con un diseño moderno y detalles de alta calidad que te harán destacar con confianza.',
+        precio: 'S/55.00'
+      },
+      {
+        id: 37,
+        nombre: 'Jacket Blackair',
+        imagen: './imagenes/jacket.jpg',
+        descripcion: 'La chaqueta Blackair es una prenda de estilo sofisticado en color negro, con detalles elegantes y un ajuste perfecto que te brinda un look audaz y vanguardista.',
+        precio: 'S/210.00'
+      },
+      {
+        id: 38,
+        nombre: 'Chaleco The North Face',
+        imagen: './imagenes/casaca4.jpg',
+        descripcion: 'El chaleco The North Face es una prenda versátil y funcional, ideal para actividades al aire libre. Con su diseño resistente, brinda calidez y protección sin sacrificar el estilo y la comodidad.',
+        precio: 'S/180.00'
+      },
+      {
+        id: 39,
+        nombre: 'Casaca Adidas Corta Viento',
+        imagen: './imagenes/casaca3.jpg',
+        descripcion: 'La casaca cortaviento de Adidas es una prenda deportiva imprescindible. Con su diseño ligero y resistente al viento, te brinda protección y estilo durante tus actividades al aire libre, sin comprometer la movilidad.',
+        precio: 'S/150.00'
+      },
+      {
+        id: 40,
+        nombre: 'Casaca Adidas Corta Viento',
+        imagen: './imagenes/casaca2.jpg',
+        descripcion: 'La casaca cortaviento de Adidas es una prenda esencial para los amantes del deporte al aire libre. Con su diseño resistente al viento y tecnología transpirable, te mantiene protegido y cómodo en cualquier clima, sin renunciar al estilo deportivo de Adidas.',
+        precio: 'S/150.00'
+      },
+      {
+        id: 41,
+        nombre: 'Casaca Nike Acolchonado',
+        imagen: './imagenes/casaca8.jpg',
+        descripcion: 'La casaca acolchonada de Nike es una prenda de abrigo perfecta para el invierno. Con su acolchado suave y cálido, te mantiene protegido del frío, mientras su diseño moderno y deportivo agrega estilo a tu outfit.',
+        precio: 'S/200.00'
+      },
+      {
+        id: 42,
+        nombre: 'Casaca Jacket',
+        imagen: './imagenes/casaca12.jpg',
+        descripcion: 'La casaca jacket es una prenda versátil y de estilo, ideal para completar cualquier look. Con su diseño moderno y variedad de materiales y colores, es perfecta para brindarte abrigo y estilo en cualquier ocasión.',
+        precio: 'S/220.00'
+      },
+      {
+        id: 43,
+        nombre: 'Casaca Adidas SPRT',
+        imagen: './imagenes/casaca7.jpg',
+        descripcion: 'La casaca Adidas SPRT es una prenda deportiva de estilo moderno y funcional, diseñada para brindar comodidad, durabilidad y un aspecto atlético.',
+        precio: 'S/180.00'
+      },
+      {
+        id: 44,
+        nombre: 'Buffer Jacket TESLA',
+        imagen: './imagenes/casaca11.jpg',
+        descripcion: 'La chaqueta TESLA Buffer es una prenda versátil con un diseño elegante y contemporáneo, ideal para mantenerse abrigado y con estilo durante cualquier actividad al aire libre.',
+        precio: 'S/240.00'
+      },
+      {
+        id: 45,
+        nombre: 'Jacket Blackair Rojo',
+        imagen: './imagenes/jacket2.jpg',
+        descripcion: 'La chaqueta Blackair Rojo es una prenda de vestir audaz y llamativa que combina un elegante diseño en color negro con toques vibrantes de rojo. Es perfecta para quienes buscan destacar con estilo y confianza.',
+        precio: 'S/210.00'
+      },
+      {
+        id: 46,
+        nombre: 'BOTAS FORUM',
+        imagen: './imagenes/7932f65edca5504793acc875266855f8.jpg',
+        descripcion: 'Las botas Forum son zapatillas emblemáticas con estilo y carácter. Presentan un diseño distintivo, durabilidad excepcional y una combinación perfecta de moda y funcionalidad.',
+        precio: 'S/120'
+      },
+      {
+        id: 47,
+        nombre: 'adidas Originals Adi-2000',
+        imagen: './imagenes/601ebdc80aea0b0e808dc9bfccd5a598.jpg',
+        descripcion: 'Las adidas Originals Adi-2000 son zapatillas clásicas y atemporales. Con su estilo retro y comodidad superior, son el complemento perfecto para cualquier look urbano.',
+        precio: 'S/150'
+      },
+      {
+        id: 48,
+        nombre: 'ADI2000',
+        imagen: './imagenes/9864cc6b0b31b8a8817e732b7288c35e.jpg',
+        descripcion: 'ADI2000 es un modelo de zapatillas de la marca adidas Originals. Combina elementos de diseño retro y moderno, ofreciendo estilo y comodidad para un look urbano y casual.',
+        precio: 'S/180'
+      },
+      {
+        id: 49,
+        nombre: 'Nike Air Force 1',
+        imagen: './imagenes/43e026c24f66e82b9266f366f05ac9e6.jpg',
+        descripcion: 'Nike Air Force 1 es un icónico modelo de zapatillas de la marca Nike. Con su diseño atemporal y versátil, brinda comodidad y estilo urbano, siendo un referente en la cultura sneaker.',
+        precio: 'S/170'
+      },
+      {
+        id: 50,
+        nombre: 'NIKE AIR FORCE ONE',
+        imagen: './imagenes/e9b1002ea6466071c6de2683581bf7da.jpg',
+        descripcion: 'Nike Air Force One, también conocido como Nike AF1, es un legendario modelo de zapatillas deportivas de Nike. Con su diseño icónico y su reconocible suela Air, representa un estilo urbano y deportivo que ha perdurado a lo largo de los años.',
+        precio: 'S/200'
+      },
+      {
+        id: 51,
+        nombre: 'NIKE DO7085',
+        imagen: './imagenes/d98b9c558242f4cda5712256801bdc81.jpg',
+        descripcion: 'Nike DO7085 no es un modelo de zapatillas reconocido. Es posible que se haya ingresado incorrectamente o se trate de un código o referencia específica que no corresponde a un producto conocido de Nike. Si tienes más detalles o información sobre el producto, puedo ayudarte de manera más precisa.',
+        precio: 'S/220'
+      },
+      {
+        id: 52,
+        nombre: 'Puma Slipstream',
+        imagen: './imagenes/b9b36188eeb5052d551ada761a8268d0.jpg',
+        descripcion: 'Puma Slipstream es un modelo icónico de zapatillas de la marca Puma. Son conocidas por su diseño retro y llamativo, con colores vibrantes y una silueta distintiva. Son ideales para quienes buscan un estilo audaz y una combinación de comodidad y estilo urbano.',
+        precio: 'S/180'
+      },
+      {
+        id: 53,
+        nombre: 'Puma Hawaii',
+        imagen: './imagenes/d2eb9a3ca77201f4420ad362dc769aa0.jpg',
+        descripcion: 'Puma Hawaii es una colección de productos deportivos inspirados en la isla paradisíaca, con diseños tropicales, colores vivos y materiales de calidad que evocan una sensación de frescura y estilo veraniego.',
+        precio: 'S/240.00'
+      },
+      {
+        id: 54,
+        nombre: 'Puma CA PRO',
+        imagen: './imagenes/d64009fe4e074949e5f58b173c8d0aea.jpg',
+        descripcion: 'Puma CA PRO ofrece productos de calidad premium para atletas de élite. Con materiales de alto rendimiento y diseño sofisticado, garantiza comodidad, durabilidad y un estilo inigualable en cada entrenamiento y competencia.',
+        precio: 'S/210.00'
+      },
+      {
+        id: 55,
+        nombre: 'Blusa con cuello',
+        imagen: './imagenes/blusa1.jpg',
+        descripcion: 'La blusa con cuello es una prenda clásica y elegante, ideal para lucir sofisticada y refinada. Su cuello aporta un toque de estilo y versatilidad a cualquier conjunto.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 56,
+        nombre: 'Blusa blanca con moño',
+        imagen: './imagenes/blusa2.jpg',
+        descripcion: 'La blusa blanca con moño es una prenda femenina y delicada que combina elegancia y estilo. El moño añade un toque de encanto y sofisticación a esta clásica prenda blanca.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 57,
+        nombre: 'Blusa con doble color',
+        imagen: './imagenes/blusa3.jpg',
+        descripcion: 'La blusa con doble color es una prenda moderna y llamativa que combina dos tonos complementarios. Este diseño único agrega un toque de estilo y originalidad a tu atuendo.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 58,
+        nombre: 'Blusa con mangas largas',
+        imagen: './imagenes/blusa4.jpg',
+        descripcion: 'La blusa con mangas largas es una prenda versátil y funcional que te mantiene abrigada y a la moda. Ideal para lucir elegante en cualquier ocasión.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 59,
+        nombre: 'Blusa con cuello',
+        imagen: './imagenes/blusa5.jpg',
+        descripcion: 'La blusa con cuello es una prenda clásica y elegante que realza tu estilo. Su cuello añade un toque sofisticado y versátil a cualquier conjunto, perfecta para ocasiones formales o informales.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 60,
+        nombre: 'Blusa de rallas con botones',
+        imagen: './imagenes/blusa6.jpg',
+        descripcion: 'La blusa de rayas con botones es una prenda chic y atemporal. Sus rayas añaden un toque de estilo y los botones le dan un detalle encantador. Ideal para looks casuales y frescos.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 61,
+        nombre: 'Blusa camisero verde',
+        imagen: './imagenes/blusa7.jpg',
+        descripcion: 'La blusa camisero verde es una prenda versátil y elegante. Su diseño fluido y su color verde vibrante la hacen ideal para lucir sofisticada y con estilo en cualquier ocasión.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 62,
+        nombre: 'Blusa camisero azul',
+        imagen: './imagenes/blusa8.jpg',
+        descripcion: 'La blusa camisero azul es una prenda clásica y atemporal. Con su diseño holgado y cuello estilo camisero, es perfecta para lucir elegante y cómoda en cualquier ocasión.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 63,
+        nombre: 'Blusa corta blanca',
+        imagen: './imagenes/blusa9.jpg',
+        descripcion: 'La blusa corta blanca es una prenda versátil y fresca. Con su longitud más corta y su color blanco, es perfecta para lucir un estilo moderno y veraniego en días cálidos.',
+        precio: 'S/65.00'
+      },
+      {
+        id: 55,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 56,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 57,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 58,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 59,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 60,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 61,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 62,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 63,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 55,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 56,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 57,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 58,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 59,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 60,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 61,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 62,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 63,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 55,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 56,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 57,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 58,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 59,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 60,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 61,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 62,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 63,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 55,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 56,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 57,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 58,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 59,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 60,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 61,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 62,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 63,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 55,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 56,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 57,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 58,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 59,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 60,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 61,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 62,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 63,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 55,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 56,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 57,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 58,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 59,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 60,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 61,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 62,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 63,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 55,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 56,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 57,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 58,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 59,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 60,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 61,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 62,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 63,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 55,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 56,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 57,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 58,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 59,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 60,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 61,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 62,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 63,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 55,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 56,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 57,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 58,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 59,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 60,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 61,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 62,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 63,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 55,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 56,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 57,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 58,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 59,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 60,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 61,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 62,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 63,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 55,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 56,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 57,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 58,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 59,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 60,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 61,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 62,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+      {
+        id: 63,
+        nombre: '',
+        imagen: '',
+        descripcion: '',
+        precio: ''
+      },
+
+      
+      // Agrega más productos aquí
+    ];
+
+    // Buscar el producto correspondiente al identificador
+    const producto = productos.find(p => p.id === parseInt(productoId));
+
+    // Mostrar los detalles del producto en el HTML
+    if (producto) {
+      const imagenProducto = document.querySelector('.imagen-producto');
+      const nombreProducto = document.querySelector('.nombre-producto');
+      const descripcionProducto = document.querySelector('.descripcion-producto');
+      const precioProducto = document.querySelector('.precio-producto');
+
+      imagenProducto.src = producto.imagen;
+      nombreProducto.textContent = producto.nombre;
+      descripcionProducto.textContent = producto.descripcion;
+      precioProducto.textContent = `Precio: ${producto.precio}`;
+    } else {
+      // Manejar el caso en el que el identificador del producto no se encuentre
+      const productoContainer = document.querySelector('.producto-container');
+      productoContainer.innerHTML = '<p>El producto no existe.</p>';
+    }
+  </script>
+</body>
+
+</html>
